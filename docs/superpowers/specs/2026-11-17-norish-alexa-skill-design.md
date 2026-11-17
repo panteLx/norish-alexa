@@ -1,5 +1,7 @@
 # Norish Alexa Skill – Design
 
+> **Hinweis (Stand der Umsetzung):** Dieses Dokument ist der ursprüngliche Entwurf. Die Umsetzung weicht ab: Node 16 statt 18 (https-Fallback statt `fetch`), kein eigenes `skill.json` (Amazon verwaltet das Manifest), Aufrufname `norish liste`, Deployment über einen Amazon-Klon. Maßgeblich ist die README.
+
 ## Ziel und Hintergrund
 
 Der Nutzer betreibt eine selbst gehostete Norish-Instanz (Rezepte-App, über eigene Domain mit HTTPS erreichbar). Er möchte per Sprache Artikel auf die Norish-Einkaufsliste setzen, ohne die App zu öffnen, z. B. in der Küche beim Kochen.
