@@ -1,0 +1,342 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "norish",
+      "intents": [
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NoIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.YesIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "AddItemIntent",
+          "slots": [
+            {
+              "name": "menge",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "einheit",
+              "type": "EINHEIT"
+            },
+            {
+              "name": "artikel",
+              "type": "ARTIKEL"
+            }
+          ],
+          "samples": [
+            "füge {menge} {einheit} {artikel} hinzu",
+            "füge {menge} {einheit} {artikel} zur Einkaufsliste hinzu",
+            "füge {menge} {artikel} hinzu",
+            "füge {menge} {artikel} zur Einkaufsliste hinzu",
+            "füge {artikel} hinzu",
+            "füge {artikel} zur Einkaufsliste hinzu",
+            "{menge} {einheit} {artikel} hinzufügen",
+            "{menge} {artikel} hinzufügen",
+            "{artikel} hinzufügen",
+            "{menge} {einheit} {artikel}",
+            "füge {menge} mal {artikel} hinzu",
+            "füge {menge} mal {artikel} zur Einkaufsliste hinzu",
+            "{menge} mal {artikel}"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "EINHEIT",
+          "values": [
+            {
+              "id": "g",
+              "name": {
+                "value": "Gramm",
+                "synonyms": [
+                  "g"
+                ]
+              }
+            },
+            {
+              "id": "kg",
+              "name": {
+                "value": "Kilogramm",
+                "synonyms": [
+                  "Kilo",
+                  "kg"
+                ]
+              }
+            },
+            {
+              "id": "ml",
+              "name": {
+                "value": "Milliliter",
+                "synonyms": [
+                  "ml"
+                ]
+              }
+            },
+            {
+              "id": "l",
+              "name": {
+                "value": "Liter",
+                "synonyms": [
+                  "l"
+                ]
+              }
+            },
+            {
+              "id": "EL",
+              "name": {
+                "value": "Esslöffel",
+                "synonyms": [
+                  "EL",
+                  "Essloeffel"
+                ]
+              }
+            },
+            {
+              "id": "TL",
+              "name": {
+                "value": "Teelöffel",
+                "synonyms": [
+                  "TL",
+                  "Teeloeffel"
+                ]
+              }
+            },
+            {
+              "id": "Packung",
+              "name": {
+                "value": "Packung",
+                "synonyms": [
+                  "Packungen",
+                  "Päckchen"
+                ]
+              }
+            },
+            {
+              "id": "Dose",
+              "name": {
+                "value": "Dose",
+                "synonyms": [
+                  "Dosen"
+                ]
+              }
+            },
+            {
+              "id": "Stück",
+              "name": {
+                "value": "Stück",
+                "synonyms": [
+                  "Stueck",
+                  "Stücke"
+                ]
+              }
+            },
+            {
+              "id": "none",
+              "name": {
+                "value": "keine",
+                "synonyms": [
+                  "ohne",
+                  "ohne Einheit",
+                  "keine Einheit"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "ARTIKEL",
+          "values": [
+            {
+              "name": {
+                "value": "Milch"
+              }
+            },
+            {
+              "name": {
+                "value": "Eier"
+              }
+            },
+            {
+              "name": {
+                "value": "Butter"
+              }
+            },
+            {
+              "name": {
+                "value": "Mehl"
+              }
+            },
+            {
+              "name": {
+                "value": "Zucker"
+              }
+            },
+            {
+              "name": {
+                "value": "Salz"
+              }
+            },
+            {
+              "name": {
+                "value": "Pfeffer"
+              }
+            },
+            {
+              "name": {
+                "value": "Brot"
+              }
+            },
+            {
+              "name": {
+                "value": "Käse"
+              }
+            },
+            {
+              "name": {
+                "value": "Joghurt"
+              }
+            },
+            {
+              "name": {
+                "value": "Nudeln"
+              }
+            },
+            {
+              "name": {
+                "value": "Reis"
+              }
+            },
+            {
+              "name": {
+                "value": "Kartoffeln"
+              }
+            },
+            {
+              "name": {
+                "value": "Zwiebeln"
+              }
+            },
+            {
+              "name": {
+                "value": "Knoblauch"
+              }
+            },
+            {
+              "name": {
+                "value": "Tomaten"
+              }
+            },
+            {
+              "name": {
+                "value": "Gurke"
+              }
+            },
+            {
+              "name": {
+                "value": "Paprika"
+              }
+            },
+            {
+              "name": {
+                "value": "Äpfel"
+              }
+            },
+            {
+              "name": {
+                "value": "Bananen"
+              }
+            },
+            {
+              "name": {
+                "value": "Kaffee"
+              }
+            },
+            {
+              "name": {
+                "value": "Tee"
+              }
+            },
+            {
+              "name": {
+                "value": "Olivenöl"
+              }
+            },
+            {
+              "name": {
+                "value": "Sahne"
+              }
+            },
+            {
+              "name": {
+                "value": "Hähnchenbrust"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "AddItemIntent",
+          "confirmationRequired": false,
+          "slots": [
+            {
+              "name": "menge",
+              "type": "AMAZON.NUMBER",
+              "confirmationRequired": false,
+              "elicitationRequired": false
+            },
+            {
+              "name": "einheit",
+              "type": "EINHEIT",
+              "confirmationRequired": false,
+              "elicitationRequired": false
+            },
+            {
+              "name": "artikel",
+              "type": "ARTIKEL",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.Artikel"
+              }
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.Artikel",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Was soll ich zur Einkaufsliste hinzufügen?"
+          }
+        ]
+      }
+    ]
+  }
+}
