@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "rezept liste",
+      "invocationName": "schmecki liste",
       "intents": [
         {
           "name": "AMAZON.HelpIntent",
