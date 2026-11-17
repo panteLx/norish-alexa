@@ -80,3 +80,68 @@ test('empty or non-array body maps to invalid_response', async () => {
   assert.equal((await kindOf(reply(200, []))).kind, 'invalid_response');
   assert.equal((await kindOf(reply(200, { ok: true }))).kind, 'invalid_response');
 });
+
+// Fallback for runtimes without global fetch (Node 16).
+const http = require('node:http');
+const { httpsFetch } = require('../norish');
+
+function serve(handler) {
+  return new Promise((resolve) => {
+    const server = http.createServer(handler);
+    server.listen(0, '127.0.0.1', () => resolve({ server, url: `http://127.0.0.1:${server.address().port}/x` }));
+  });
+}
+
+test('httpsFetch returns status, headers and parsed JSON', async () => {
+  let seen;
+  const { server, url } = await serve((req, res) => {
+    let body = '';
+    req.on('data', (c) => (body += c));
+    req.on('end', () => {
+      seen = { method: req.method, key: req.headers['x-api-key'], body };
+      res.writeHead(429, { 'Retry-After': '7', 'Content-Type': 'application/json' });
+      res.end('[{"id":"1"}]');
+    });
+  });
+  try {
+    const res = await httpsFetch(url, { method: 'POST', headers: { 'x-api-key': 'k' }, body: '{"a":1}' });
+    assert.deepEqual(seen, { method: 'POST', key: 'k', body: '{"a":1}' });
+    assert.equal(res.status, 429);
+    assert.equal(res.ok, false);
+    assert.equal(res.headers.get('Retry-After'), '7');
+    assert.deepEqual(await res.json(), [{ id: '1' }]);
+  } finally {
+    server.close();
+  }
+});
+
+test('httpsFetch rejects when the signal aborts', async () => {
+  const { server, url } = await serve(() => {});
+  try {
+    const controller = new AbortController();
+    const p = httpsFetch(url, { method: 'POST', headers: {}, body: '', signal: controller.signal });
+    setTimeout(() => controller.abort(), 20);
+    await assert.rejects(p);
+  } finally {
+    server.closeAllConnections();
+    server.close();
+  }
+});
+
+test('the client works end to end without global fetch', async () => {
+  const { server, url } = await serve((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end('[{"id":"1","name":"Milch"}]');
+  });
+  const original = globalThis.fetch;
+  globalThis.fetch = undefined;
+  try {
+    const base = url.replace('/x', '');
+    const result = await createNorishClient({ baseUrl: base, apiKey: 'k', timeoutMs: 500 })
+      .addGrocery({ name: 'Milch', amount: 1, unit: null });
+    assert.equal(result[0].name, 'Milch');
+  } finally {
+    globalThis.fetch = original;
+    server.close();
+  }
+});

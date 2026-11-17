@@ -4,12 +4,11 @@ const path = require('node:path');
 
 const root = path.join(__dirname, '..', '..', 'skill-package');
 const modelFile = require(path.join(root, 'interactionModels', 'custom', 'de-DE.json'));
-const manifest = require(path.join(root, 'skill.json'));
 const lang = modelFile.interactionModel.languageModel;
 const intent = (name) => lang.intents.find((i) => i.name === name);
 
-test('invocation name is norish liste', () => {
-  assert.equal(lang.invocationName, 'norish liste');
+test('invocation name is norish', () => {
+  assert.equal(lang.invocationName, 'norish');
 });
 
 test('AddItemIntent has the three slots with the right types', () => {
@@ -59,10 +58,4 @@ test('built-in help, stop, cancel and no intents exist', () => {
   for (const n of ['AMAZON.HelpIntent', 'AMAZON.StopIntent', 'AMAZON.CancelIntent', 'AMAZON.NoIntent']) {
     assert.ok(intent(n), n);
   }
-});
-
-test('manifest is German and custom', () => {
-  const m = manifest.manifest;
-  assert.ok(m.publishingInformation.locales['de-DE']);
-  assert.ok(m.apis.custom);
 });

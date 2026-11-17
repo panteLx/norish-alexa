@@ -8,8 +8,5 @@
   },
   "dependencies": {
     "ask-sdk-core": "^2.14.0"
-  },
-  "engines": {
-    "node": ">=18"
   }
 }

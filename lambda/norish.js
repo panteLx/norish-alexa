@@ -1,3 +1,29 @@
+const http = require('http');
+const https = require('https');
+
+// Minimal fetch replacement for runtimes without global fetch (Node 16).
+function httpsFetch(url, { method = 'GET', headers = {}, body, signal } = {}) {
+  return new Promise((resolve, reject) => {
+    const mod = new URL(url).protocol === 'http:' ? http : https;
+    const req = mod.request(url, { method, headers, signal }, (res) => {
+      const chunks = [];
+      res.on('data', (c) => chunks.push(c));
+      res.on('end', () => {
+        const text = Buffer.concat(chunks).toString('utf8');
+        resolve({
+          status: res.statusCode,
+          ok: res.statusCode >= 200 && res.statusCode < 300,
+          headers: { get: (n) => (res.headers[String(n).toLowerCase()] !== undefined ? res.headers[String(n).toLowerCase()] : null) },
+          json: async () => JSON.parse(text),
+        });
+      });
+    });
+    req.on('error', reject);
+    if (body !== undefined) req.write(body);
+    req.end();
+  });
+}
+
 class NorishError extends Error {
   constructor(kind, message, retryAfter) {
     super(message || kind);
@@ -7,7 +33,7 @@ class NorishError extends Error {
   }
 }
 
-function createNorishClient({ baseUrl, apiKey, fetchImpl = fetch, timeoutMs = 4000 }) {
+function createNorishClient({ baseUrl, apiKey, fetchImpl = globalThis.fetch || httpsFetch, timeoutMs = 4000 }) {
   const url = `${baseUrl.replace(/\/+$/, '')}/api/v1/groceries`;
 
   async function addGrocery({ name, amount, unit }) {
@@ -38,7 +64,7 @@ function createNorishClient({ baseUrl, apiKey, fetchImpl = fetch, timeoutMs = 40
     let body;
     try {
       body = await res.json();
-    } catch {
+    } catch (e) {
       throw new NorishError('invalid_response');
     }
     if (!Array.isArray(body) || body.length === 0) throw new NorishError('invalid_response');
@@ -48,4 +74,4 @@ function createNorishClient({ baseUrl, apiKey, fetchImpl = fetch, timeoutMs = 40
   return { addGrocery };
 }
 
-module.exports = { NorishError, createNorishClient };
+module.exports = { NorishError, createNorishClient, httpsFetch };

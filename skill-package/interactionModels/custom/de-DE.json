@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "norish liste",
+      "invocationName": "norish",
       "intents": [
         {
           "name": "AMAZON.HelpIntent",
@@ -68,97 +68,70 @@
               "id": "g",
               "name": {
                 "value": "Gramm",
-                "synonyms": [
-                  "g"
-                ]
+                "synonyms": ["g"]
               }
             },
             {
               "id": "kg",
               "name": {
                 "value": "Kilogramm",
-                "synonyms": [
-                  "Kilo",
-                  "kg"
-                ]
+                "synonyms": ["Kilo", "kg"]
               }
             },
             {
               "id": "ml",
               "name": {
                 "value": "Milliliter",
-                "synonyms": [
-                  "ml"
-                ]
+                "synonyms": ["ml"]
               }
             },
             {
               "id": "l",
               "name": {
                 "value": "Liter",
-                "synonyms": [
-                  "l"
-                ]
+                "synonyms": ["l"]
               }
             },
             {
               "id": "EL",
               "name": {
                 "value": "Esslöffel",
-                "synonyms": [
-                  "EL",
-                  "Essloeffel"
-                ]
+                "synonyms": ["EL", "Essloeffel"]
               }
             },
             {
               "id": "TL",
               "name": {
                 "value": "Teelöffel",
-                "synonyms": [
-                  "TL",
-                  "Teeloeffel"
-                ]
+                "synonyms": ["TL", "Teeloeffel"]
               }
             },
             {
               "id": "Packung",
               "name": {
                 "value": "Packung",
-                "synonyms": [
-                  "Packungen",
-                  "Päckchen"
-                ]
+                "synonyms": ["Packungen", "Päckchen"]
               }
             },
             {
               "id": "Dose",
               "name": {
                 "value": "Dose",
-                "synonyms": [
-                  "Dosen"
-                ]
+                "synonyms": ["Dosen"]
               }
             },
             {
               "id": "Stück",
               "name": {
                 "value": "Stück",
-                "synonyms": [
-                  "Stueck",
-                  "Stücke"
-                ]
+                "synonyms": ["Stueck", "Stücke"]
               }
             },
             {
               "id": "none",
               "name": {
                 "value": "keine",
-                "synonyms": [
-                  "ohne",
-                  "ohne Einheit",
-                  "keine Einheit"
-                ]
+                "synonyms": ["ohne", "ohne Einheit", "keine Einheit"]
               }
             }
           ]

@@ -1,11 +1,11 @@
-const fs = require('node:fs');
-const path = require('node:path');
+const fs = require('fs');
+const path = require('path');
 const { NorishError } = require('./norish');
 
 function readFileConfig(filePath) {
   try {
     return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-  } catch {
+  } catch (e) {
     return {};
   }
 }
