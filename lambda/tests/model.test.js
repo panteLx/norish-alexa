@@ -8,7 +8,7 @@ const lang = modelFile.interactionModel.languageModel;
 const intent = (name) => lang.intents.find((i) => i.name === name);
 
 test('invocation name is norish', () => {
-  assert.equal(lang.invocationName, 'norish');
+  assert.equal(lang.invocationName, 'norish liste');
 });
 
 test('AddItemIntent has the three slots with the right types', () => {
