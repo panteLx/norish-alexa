@@ -7,9 +7,9 @@
           "summary": "Füge Artikel per Sprache zu deiner Norish-Einkaufsliste hinzu.",
           "description": "Privater Skill: Artikel mit optionaler Menge und Einheit zur Norish-Einkaufsliste hinzufügen.",
           "examplePhrases": [
-            "Alexa, öffne Norish",
-            "Alexa, sag Norish, füge zwei Liter Milch hinzu",
-            "Alexa, sag Norish, füge Eier hinzu"
+            "Alexa, öffne Norish Liste",
+            "Alexa, sag Norish Liste, füge zwei Liter Milch hinzu",
+            "Alexa, sag Norish Liste, füge Eier hinzu"
           ],
           "keywords": ["Einkaufsliste", "Norish"]
         }

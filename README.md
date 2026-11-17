@@ -2,10 +2,10 @@
 
 Privater deutscher Alexa-Skill: Artikel mit optionaler Menge und Einheit zur Einkaufsliste einer selbst gehosteten [Norish](https://github.com/norish-recipes/norish)-Instanz hinzufügen.
 
-- „Alexa, öffne Norish“ → „2 Liter Milch hinzufügen“
-- „Alexa, sag Norish, füge Eier hinzu“
+- „Alexa, öffne Norish Liste“ → „2 Liter Milch hinzufügen“
+- „Alexa, sag Norish Liste, füge Eier hinzu“
 
-**Einschränkung:** Der Skill wird nur über seinen Aufrufnamen angesprochen. „Alexa, füge Milch zur Einkaufsliste hinzu“ ohne „Norish“ landet in Alexas eingebauter Einkaufsliste.
+**Einschränkung:** Der Skill wird nur über seinen Aufrufnamen angesprochen. „Alexa, füge Milch zur Einkaufsliste hinzu“ ohne „Norish Liste“ landet in Alexas eingebauter Einkaufsliste.
 
 Mengen werden von Norish addiert, wenn Name **und** Einheit übereinstimmen. Einheiten werden als Kurzform gespeichert: `g`, `kg`, `ml`, `l`, `EL`, `TL`, `Packung`, `Dose`, `Stück`.
 
@@ -17,7 +17,7 @@ Mengen werden von Norish addiert, wenn Name **und** Einheit übereinstimmen. Ein
 4. **Interaktionsmodell:** Build → Interaction Model → JSON Editor, Inhalt von `skill-package/interactionModels/custom/de-DE.json` einfügen, „Save“ und „Build Model“.
 5. **Code:** Im Tab „Code“ den Inhalt von `lambda/` kopieren (`index.js`, `handlers.js`, `norish.js`, `config.js`, `units.js`, `text.js`) und die Abhängigkeit `ask-sdk-core` in `package.json` belassen.
 6. **Zugangsdaten:** Im Code-Editor eine Datei `config.json` anlegen (Vorlage: `lambda/config.example.json`) mit `baseUrl` (nur die Domain, z. B. `https://norish.example.com`) und `apiKey`. Die Datei steht in `.gitignore` und gehört nicht ins Repo. „Deploy“.
-7. **Testen:** Im Tab „Test“ (Entwicklung aktivieren) `öffne norish` und `füge 2 Liter Milch hinzu`, danach auf dem Echo.
+7. **Testen:** Im Tab „Test“ (Entwicklung aktivieren) `öffne norish liste` und `füge 2 Liter Milch hinzu`, danach auf dem Echo.
 
 Der Code braucht Node.js ≥ 18 (globales `fetch`); beim Anlegen des Alexa-hosted Skills die Region EU (Irland) wählen und die Node-Version prüfen.
 
