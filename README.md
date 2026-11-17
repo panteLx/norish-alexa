@@ -2,8 +2,8 @@
 
 Privater deutscher Alexa-Skill: Artikel mit optionaler Menge und Einheit zur Einkaufsliste einer selbst gehosteten [Norish](https://github.com/norish-recipes/norish)-Instanz hinzufügen.
 
-- „Alexa, öffne Norish Liste“ → „2 Liter Milch hinzufügen“
-- „Alexa, sag Norish Liste, füge Eier hinzu“
+- „Alexa, öffne Rezept Liste“ → „2 Liter Milch hinzufügen“
+- „Alexa, sag Rezept Liste, füge Eier hinzu“
 
 **Einschränkung:** Der Skill wird nur über seinen Aufrufnamen angesprochen. Sätze mit „Einkaufsliste“ („füge Milch zur Einkaufsliste hinzu“) fängt Alexas eingebaute Liste ab.
 
@@ -24,11 +24,11 @@ Das Manifest (`skill.json`) liegt bewusst **nicht** in diesem Repo. Bei Alexa-ho
 ## Einrichtung
 
 1. **Norish-API-Key** unter Einstellungen → Benutzer → API-Schlüssel erzeugen.
-2. **Skill anlegen:** In der Alexa Developer Console (kostenloses Developer-Konto) „Create Skill“ → Deutsch (DE), Custom, Hosting „Alexa-hosted (Node.js)“. Aufrufname im Tab Build: `norish liste`.
+2. **Skill anlegen:** In der Alexa Developer Console (kostenloses Developer-Konto) „Create Skill“ → Deutsch (DE), Custom, Hosting „Alexa-hosted (Node.js)“. Aufrufname im Tab Build: `rezept liste`.
 3. **Amazon-Klon holen** (einmalig, neben diesem Repo): `ask configure` (AWS-Verknüpfung mit „No“ beantworten), dann `ask init --hosted-skill-id <Skill-ID>`, Ordnername z. B. `norish-alexa-hosted`.
 4. **Zugangsdaten:** Im Klon `lambda/config.json` anlegen (Vorlage: `lambda/config.example.json`) mit `baseUrl` (nur die Domain) und `apiKey`. Die Datei bleibt im Amazon-Repo und kommt nie nach GitHub (`.gitignore`).
 5. **Deployen:** `scripts/deploy-hosted.sh ../norish-alexa-hosted --push`. Das kopiert `lambda/` und das Modell, lässt `config.json` und das Manifest unberührt und pusht. Der Build bei Amazon dauert etwa eine Minute, danach wird das Lambda mit einigen weiteren Minuten Verzögerung umgestellt. Im Build-Tab prüfen, dass das Modell gebaut wurde (sonst „Build Model“).
-6. **Testen:** Im Test-Tab (Entwicklung aktivieren) `öffne norish liste`, dann `füge 2 Liter Milch hinzu`. Ohne Konsole geht es per CLI: `ask smapi set-skill-enablement -s <ID> -g development`, dann `ask smapi simulate-skill -s <ID> --input-content "öffne norish liste und füge 2 Liter Milch hinzu" --device-locale de-DE` und das Ergebnis mit `ask smapi get-skill-simulation` abrufen.
+6. **Testen:** Im Test-Tab (Entwicklung aktivieren) `öffne rezept liste`, dann `füge 2 Liter Milch hinzu`. Ohne Konsole geht es per CLI: `ask smapi set-skill-enablement -s <ID> -g development`, dann `ask smapi simulate-skill -s <ID> --input-content "öffne rezept liste und füge 2 Liter Milch hinzu" --device-locale de-DE` und das Ergebnis mit `ask smapi get-skill-simulation` abrufen.
 
 Die Runtime ist Node 16 und hat kein globales `fetch`, der Client nutzt dann `https`. Der Konsolen-Editor prüft mit einem älteren Parser, deshalb im Lambda-Code kein `??`, `?.` oder `catch {`.
 

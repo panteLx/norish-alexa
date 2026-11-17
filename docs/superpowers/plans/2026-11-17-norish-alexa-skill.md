@@ -1,6 +1,6 @@
 # Norish Alexa Skill Implementation Plan
 
-> **Hinweis (Stand der Umsetzung):** Dieses Dokument ist der ursprüngliche Entwurf. Die Umsetzung weicht ab: Node 16 statt 18 (https-Fallback statt `fetch`), kein eigenes `skill.json` (Amazon verwaltet das Manifest), Aufrufname `norish liste`, Deployment über einen Amazon-Klon. Maßgeblich ist die README.
+> **Hinweis (Stand der Umsetzung):** Dieses Dokument ist der ursprüngliche Entwurf. Die Umsetzung weicht ab: Node 16 statt 18 (https-Fallback statt `fetch`), kein eigenes `skill.json` (Amazon verwaltet das Manifest), Aufrufname `rezept liste`, Deployment über einen Amazon-Klon. Maßgeblich ist die README.
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
