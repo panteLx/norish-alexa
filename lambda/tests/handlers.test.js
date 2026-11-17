@@ -44,6 +44,12 @@ test('defaults to amount 1 and no unit', async () => {
   assert.deepEqual(calls, [{ name: 'Milch', amount: 1, unit: null }]);
 });
 
+test('a leading "einmal" in the article is dropped and amount stays 1', async () => {
+  const { calls, run } = setup();
+  await run(add({ artikel: slot('artikel', 'einmal spätzle') }));
+  assert.deepEqual(calls, [{ name: 'Spätzle', amount: 1, unit: null }]);
+});
+
 test('blank article asks for the article', async () => {
   const { calls, run } = setup();
   const res = await run(add({ artikel: slot('artikel', '   ') }));

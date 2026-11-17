@@ -43,7 +43,8 @@ function createHandlers({ getClient }) {
         return s && typeof s.value === 'string' ? s.value : '';
       };
 
-      const name = normalizeName(slotValue('artikel'));
+      // "1x" is spoken "einmal" and may land in the article slot.
+      const name = normalizeName(slotValue('artikel').replace(/^\s*(einmal|ein mal|1\s?(x|mal))\s+/i, ''));
       if (!name) return elicit(i, 'artikel', 'Was soll ich zur Einkaufsliste hinzufügen?');
       if (END_WORDS.has(bare(name))) return i.responseBuilder.speak(GOODBYE).withShouldEndSession(true).getResponse();
       if (AGAIN_WORDS.has(bare(name))) return elicit(i, 'artikel', 'Was soll ich zur Einkaufsliste hinzufügen?');

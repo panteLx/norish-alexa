@@ -56,7 +56,11 @@
             "{menge} {einheit} {artikel}",
             "füge {menge} mal {artikel} hinzu",
             "füge {menge} mal {artikel} zur Einkaufsliste hinzu",
-            "{menge} mal {artikel}"
+            "{menge} mal {artikel}",
+            "füge einmal {artikel} hinzu",
+            "füge einmal {artikel} zur Einkaufsliste hinzu",
+            "füge ein mal {artikel} hinzu",
+            "einmal {artikel}"
           ]
         }
       ],
