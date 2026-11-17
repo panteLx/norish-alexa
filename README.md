@@ -32,6 +32,17 @@ Das Manifest (`skill.json`) liegt bewusst **nicht** in diesem Repo. Bei Alexa-ho
 
 Die Runtime ist Node 16 und hat kein globales `fetch`, der Client nutzt dann `https`. Der Konsolen-Editor prüft mit einem älteren Parser, deshalb im Lambda-Code kein `??`, `?.` oder `catch {`.
 
+## Skill aktualisieren
+
+Nach jeder Änderung an `lambda/` oder am Modell, aus diesem Repo heraus:
+
+```sh
+cd lambda && npm test && cd ..
+./scripts/deploy-hosted.sh ../norish-alexa-hosted --push
+```
+
+Das Skript braucht `rsync` und `git`. Ohne `--push` kopiert es nur, und du prüfst den Klon vorher selbst. Danach einige Minuten warten, bis das Lambda umgestellt ist (siehe Fehlersuche).
+
 ## Fehlersuche
 
 - **„Zugriff abgelehnt“ obwohl der Key stimmt:** Liegt Norish hinter Cloudflare, blockt die Bot-Prüfung („Just a moment…“, HTTP 403, `cf-mitigated: challenge`) Anfragen aus dem AWS-Rechenzentrum. Im Free-Plan lässt sich Bot Fight Mode nicht pro Pfad ausnehmen: entweder für die Zone abschalten und `/api/v1/` ohne `x-api-key` per WAF-Regel blocken, oder die API über eine Subdomain ohne Proxy (graue Wolke) erreichen. Cloudflare-Access-Header helfen dabei nicht.
